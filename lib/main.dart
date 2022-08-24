@@ -41,63 +41,24 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  final _bottomNBItems = [
-    const BottomNavigationBarItem(
-      icon: Icon(
-        Icons.arrow_drop_up_outlined,
-        color: Colors.black,
-      ),
-      label: '',
-    ),
-    const BottomNavigationBarItem(
-      icon: Icon(
-        Icons.arrow_drop_up_outlined,
-        color: Colors.black,
-      ),
-      label: '',
-    ),
-    const BottomNavigationBarItem(
-      icon: Icon(
-        Icons.arrow_drop_up_outlined,
-        color: Colors.black,
-      ),
-      label: '',
-    ),
-    const BottomNavigationBarItem(
-      icon: Icon(
-        Icons.arrow_drop_up_outlined,
-        color: Colors.black,
-      ),
-      label: '',
-    ),
-    const BottomNavigationBarItem(
-      icon: Icon(
-        Icons.arrow_drop_up_outlined,
-        color: Colors.black,
-      ),
-      label: '',
-    ),
-    const BottomNavigationBarItem(
-      icon: Icon(
-        Icons.arrow_drop_up_outlined,
-        color: Colors.black,
-      ),
-      label: '',
-    ),
-    const BottomNavigationBarItem(
-      icon: Icon(
-        Icons.arrow_drop_up_outlined,
-        color: Colors.black,
-      ),
-      label: '',
-    ),
-    const BottomNavigationBarItem(
-      icon: Icon(
-        Icons.arrow_drop_up_outlined,
-        color: Colors.black,
-      ),
-      label: '',
-    ),
+  List<BottomNavigationBarItem> _btnScreens() {
+    var btnScreenList = <BottomNavigationBarItem>[];
+    for (var i = 0; i < _screens.length; i++) {
+      btnScreenList.add(const BottomNavigationBarItem(
+        icon: Icon(
+          Icons.circle,
+          // color: Colors.black,
+        ),
+        label: '',
+      ));
+    }
+    return btnScreenList;
+  }
+
+  final List<Widget> _screens = <Widget>[
+    const ScreenOne(),
+    const ScreenTwo(),
+    const ScreenThree(),
   ];
 
   @override
@@ -113,20 +74,20 @@ class _MyHomePageState extends State<MyHomePage> {
             _currentIndex = value;
           });
         }),
-        children: const [
-          ScreenOne(),
-          ScreenTwo(),
-          ScreenThree(),
-        ],
+        children: _screens,
       ),
       bottomNavigationBar: Container(
         // decoration: BoxDecoration(color: Colors.blueAccent),
-        padding: EdgeInsets.only(left: 75, right: 75),
+        padding: const EdgeInsets.only(left: 75, right: 75),
         child: BottomNavigationBar(
+          unselectedItemColor: const Color.fromARGB(245, 140, 138, 138),
+          selectedItemColor: Color.fromARGB(255, 0, 0, 0),
+          iconSize: 15,
+
           elevation: 0,
           type: BottomNavigationBarType.fixed,
-          backgroundColor: Color.fromARGB(0, 68, 137, 255),
-          items: _bottomNBItems,
+          // backgroundColor: Color.fromARGB(0, 68, 137, 255),
+          items: _btnScreens(),
           currentIndex: _currentIndex,
           // type: BottomNavigationBarType.fixed,
           onTap: ((value) {
